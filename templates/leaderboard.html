@@ -4,16 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Quiz Results</title>
+    <title>Leaderboard</title>
 </head>
 <body>
     <div class="container">
-        <h1>Quiz Results</h1>
-        <p>Your Score: <strong>{{ score }}</strong> out of <strong>{{ total }}</strong></p>
-        <p>Percentage: <strong>{{ (score / total) * 100 }}%</strong></p>
-        <h2>{{ feedback }}</h2>
-        <a href="/" class="back-btn">Try Again</a>
-        <h2>Leaderboard</h2>
+        <h1>Leaderboard</h1>
         <table>
             <tr>
                 <th>Rank</th>
@@ -28,6 +23,7 @@
             </tr>
             {% endfor %}
         </table>
+        <a href="/" class="back-btn">Back to Quiz</a>
     </div>
 </body>
 </html>

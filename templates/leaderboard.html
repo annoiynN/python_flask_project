@@ -18,10 +18,10 @@
             {% for i, entry in enumerate(leaderboard) %}
             <tr>
                 <td>{{ i + 1 }}</td>
-                <td>{{ entry['username'] }}</td>
-                <td>{{ entry['score'] }}</td>
+                <td>{{ entry.username }}</td>
+                <td>{{ entry.score }}</td>
             </tr>
-            {% endfor %}
+            {% end for %}
         </table>
         <a href="/" class="back-btn">Back to Quiz</a>
     </div>

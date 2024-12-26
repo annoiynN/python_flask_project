@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Quiz Results</title>
+    <title>Quiz Result</title>
 </head>
 <body>
     <div class="container">
-        <h1>Quiz Results</h1>
-        <p>Your Score: <strong>{{ score }}</strong> out of <strong>{{ total }}</strong></p>
-        <p>Percentage: <strong>{{ (score / total) * 100 }}%</strong></p>
-        <h2>{{ feedback }}</h2>
-        <a href="/" class="back-btn">Try Again</a>
+        <h1>Quiz Result</h1>
+        <p>Score: {{ score }} / {{ total }}</p>
+        <p>Feedback: {{ feedback }}</p>
+
         <h2>Leaderboard</h2>
         <table>
             <tr>
@@ -23,11 +22,12 @@
             {% for i, entry in enumerate(leaderboard) %}
             <tr>
                 <td>{{ i + 1 }}</td>
-                <td>{{ entry['username'] }}</td>
-                <td>{{ entry['score'] }}</td>
+                <td>{{ entry.username }}</td>
+                <td>{{ entry.score }}</td>
             </tr>
             {% endfor %}
         </table>
+        <a href="/" class="back-btn">Back to Quiz</a>
     </div>
 </body>
 </html>

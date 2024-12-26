@@ -3,37 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Quiz</title>
 </head>
-<body>
-    <div class="container">
-        <h1>Welcome to the Quiz!</h1>
+<form action="/result" method="POST">
+    <h3>Enter your name:</h3>
+    <input type="text" name="username" id="name" required>
 
-        {% if feedback %}
-            <div class="error-message">{{ feedback }}</div>
-        {% endif %}
+    <h3>What is the best programming language?</h3>
+    <input type="radio" name="question-0" value="C++"> C++<br>
+    <input type="radio" name="question-0" value="Python"> Python<br>
+    <input type="radio" name="question-0" value="Golang"> Golang<br>
+    <input type="radio" name="question-0" value="C#"> C#<br>
 
-        <!-- Quiz Form -->
-        <form action="/result" method="POST">
-            <label for="username">Enter your name:</label>
-            <input type="text" id="username" name="username" required>
-            <br>
+    <h3>Which of these is a programming language?</h3>
+    <input type="radio" name="question-1" value="BloodLast"> BloodLast<br>
+    <input type="radio" name="question-1" value="Erebus"> Erebus<br>
+    <input type="radio" name="question-1" value="Python"> Python<br>
+    <input type="radio" name="question-1" value="Linux"> Linux<br>
 
-            {% for i, question in enumerate(questions) %}
-                <fieldset>
-                    <legend>{{ question['question'] }}</legend>
-                    {% for option in question['options'] %}
-                        <label>
-                            <input type="radio" name="question-{{ i }}" value="{{ option }}" required>
-                            {{ option }}
-                        </label><br>
-                    {% endfor %}
-                </fieldset>
-            {% endfor %}
+    <h3>Who created Python programming language?</h3>
+    <input type="radio" name="question-2" value="Linus Torvalds"> Linus Torvalds<br>
+    <input type="radio" name="question-2" value="Guido van Rossum"> Guido van Rossum<br>
+    <input type="radio" name="question-2" value="Mark Zuckerberg"> Mark Zuckerberg<br>
+    <input type="radio" name="question-2" value="Chad Meredith Hurley"> Chad Meredith Hurley<br>
 
-            <button type="submit" class="submit-btn">Submit Quiz</button>
-        </form>
-    </div>
-</body>
-</html>
+    <h3>Who is the richest person in the world?</h3>
+    <input type="radio" name="question-3" value="Mark Zuckerberg"> Mark Zuckerberg<br>
+    <input type="radio" name="question-3" value="Elon Mask"> Elon Musk<br>
+    <input type="radio" name="question-3" value="Jacob Rothschild"> Jacob Rothschild<br>
+    <input type="radio" name="question-3" value="Donald Trump"> Donald Trump<br>
+
+    <h3>Which of the following programming languages is a markup language?</h3>
+    <input type="radio" name="question-4" value="HTML"> HTML<br>
+    <input type="radio" name="question-4" value="Java"> Java<br>
+    <input type="radio" name="question-4" value="Ruby"> Ruby<br>
+    <input type="radio" name="question-4" value="C+"> C+<br>
+
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+

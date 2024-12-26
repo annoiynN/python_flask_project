@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-
+import sqlite3
 app = Flask(__name__)
 
 app.jinja_env.globals.update(enumerate=enumerate)
@@ -15,6 +15,11 @@ questions = [
     {"question": "Which of the following programming languages is a markup language?", "answer": "HTML"},
 ]
 
+
+def get_db_connection():
+    conn = sqlite3.connect('leaderboard.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 @app.route('/')
 def index():

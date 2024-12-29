@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
 import sqlite3
+
 app = Flask(__name__)
 
 app.jinja_env.globals.update(enumerate=enumerate)
-
 
 leaderboard = []
 
@@ -20,6 +20,7 @@ def get_db_connection():
     conn = sqlite3.connect('leaderboard.db')
     conn.row_factory = sqlite3.Row
     return conn
+
 
 @app.route('/')
 def index():
@@ -51,14 +52,23 @@ def result():
     else:
         feedback = "You could have done better"
 
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute('INSERT INTO leaderboard (username, score) VALUES (?, ?)', (username, score))
+    conn.commit()
+    conn.close()
+
+
     leaderboard.append({"username": username, "score": score})
 
     return render_template('result.html', score=score, total=total, feedback=feedback, leaderboard=leaderboard)
+
 
 @app.route('/leaderboard')
 def show_leaderboard():
     sorted_leaderboard = sorted(leaderboard, key=lambda x: x['score'], reverse=True)
     return render_template('leaderboard.html', leaderboard=sorted_leaderboard)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
